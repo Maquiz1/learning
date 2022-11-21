@@ -160,8 +160,12 @@ def deleteMessage(request, pk):
 def userP0rofile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
+    rooms_message = user.message_set.all()
+    topics = Topic.room_set.all()
     context = {
         'user':user,
         'rooms':rooms,
+        'rooms_message':rooms_message,
+        'topics':topics,
         }
     return render(request,'base/profile.html', context)
